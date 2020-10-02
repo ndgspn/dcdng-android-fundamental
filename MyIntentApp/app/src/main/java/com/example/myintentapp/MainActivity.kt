@@ -10,6 +10,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var btnMoveActivity: Button
     private lateinit var btnMoveWithDataActivity: Button
+    private lateinit var btnMoveWithObject: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -17,9 +18,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         btnMoveActivity = findViewById(R.id.btn_move_activity)
         btnMoveWithDataActivity = findViewById(R.id.btn_move_activity_data)
+        btnMoveWithObject = findViewById(R.id.btn_move_activity_object)
 
         btnMoveActivity.setOnClickListener(this)
         btnMoveWithDataActivity.setOnClickListener(this)
+        btnMoveWithObject.setOnClickListener(this)
     }
 
     override fun onClick(view: View?) {
