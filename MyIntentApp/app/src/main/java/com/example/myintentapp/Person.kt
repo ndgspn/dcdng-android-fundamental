@@ -8,7 +8,7 @@ data class Person(
     val age: Int?,
     val email: String?,
     val city: String?
-):Parcelable {
+) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString(),
         parcel.readValue(Int::class.java.classLoader) as? Int,

@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.os.Parcelable
 import android.widget.TextView
 import androidx.annotation.RequiresApi
+import org.w3c.dom.Text
 
 class MoveWithObjectActivity : AppCompatActivity() {
     private lateinit var tvObjectReceived: TextView
@@ -14,7 +15,7 @@ class MoveWithObjectActivity : AppCompatActivity() {
     companion object {
         const val EXTRA_PERSON = "extra_person"
     }
-    @RequiresApi(Build.VERSION_CODES.P)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_move_with_object)
@@ -23,10 +24,10 @@ class MoveWithObjectActivity : AppCompatActivity() {
 
         val person = intent.getParcelableExtra<Parcelable>(EXTRA_PERSON) as com.example.myintentapp.Person
         val result = """
-            Name: ${person.name.toString()}
-            Age: ${person.age.toString()}
-            Email: ${person.email.toString()}
-            City: ${person.city.toString()}
+            Name: ${person.name}
+            Age: ${person.age}
+            Email: ${person.email}
+            City: ${person.city}
         """.trimIndent()
 
         tvObjectReceived.text = result

@@ -47,12 +47,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     "nandangsopyan08@gmail.com",
                     "Bogor"
                 )
-                val intent: Intent = Intent(this@MainActivity, MoveWithObjectActivity::class.java).apply {
+
+                val intentObject: Intent = Intent(this@MainActivity, MoveWithObjectActivity::class.java).apply {
                     putExtra(MoveWithObjectActivity.EXTRA_PERSON, person)
                 }
-                startActivity(intent)
-            }
 
+                startActivity(intentObject)
+            }
         }
     }
 }
