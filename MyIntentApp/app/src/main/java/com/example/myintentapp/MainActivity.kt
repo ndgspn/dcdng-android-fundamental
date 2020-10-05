@@ -1,6 +1,7 @@
 package com.example.myintentapp
 
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -11,6 +12,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var btnMoveActivity: Button
     private lateinit var btnMoveWithDataActivity: Button
     private lateinit var btnMoveWithObject: Button
+    private lateinit var btnDialNumber: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,10 +21,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         btnMoveActivity = findViewById(R.id.btn_move_activity)
         btnMoveWithDataActivity = findViewById(R.id.btn_move_activity_data)
         btnMoveWithObject = findViewById(R.id.btn_move_activity_object)
+        btnDialNumber = findViewById(R.id.btn_dial_number)
 
         btnMoveActivity.setOnClickListener(this)
         btnMoveWithDataActivity.setOnClickListener(this)
         btnMoveWithObject.setOnClickListener(this)
+        btnDialNumber.setOnClickListener(this)
     }
 
     override fun onClick(view: View?) {
@@ -53,6 +57,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 }
 
                 startActivity(intentObject)
+            }
+
+            R.id.btn_dial_number -> {
+                val phoneNumber = "085777222926"
+                val intentDial = Intent(Intent.ACTION_DIAL, Uri.parse("tel: $phoneNumber"))
+                startActivity(intentDial)
             }
         }
     }
