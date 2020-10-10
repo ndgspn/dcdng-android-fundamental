@@ -1,6 +1,7 @@
 package com.example.myflexiblefragment
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -41,11 +42,8 @@ class HomeFragment : Fragment(), View.OnClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val btnCategory: Button = view.findViewById(R.id.btn_category)
+
         btnCategory.setOnClickListener(this)
-    }
-
-    override fun onClick(view: View) {
-
     }
 
     companion object {
@@ -66,6 +64,17 @@ class HomeFragment : Fragment(), View.OnClickListener {
                     putString(ARG_PARAM2, param2)
                 }
             }
+    }
+
+    override fun onClick(view: View?) {
+        val mCategoryFragment = CategoryFragment()
+        val mFragmentManager = fragmentManager
+
+        mFragmentManager?.beginTransaction()?.apply {
+            replace(R.id.frame_container, mCategoryFragment, CategoryFragment::class.java.simpleName)
+            addToBackStack(null)
+            commit()
+        }
     }
 
 }
