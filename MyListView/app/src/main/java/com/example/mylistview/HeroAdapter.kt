@@ -9,6 +9,7 @@ import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.TextView
 import de.hdodenhof.circleimageview.CircleImageView
+import kotlinx.android.synthetic.main.item_hero.view.*
 import java.security.AccessControlContext
 
 class HeroAdapter internal constructor(private val context: Context) : BaseAdapter() {
@@ -38,15 +39,14 @@ class HeroAdapter internal constructor(private val context: Context) : BaseAdapt
         return itemView
     }
 
-    private inner class ViewHolder internal constructor(view: View) {
-        private val tvName: TextView = view.findViewById(R.id.tv_name)
-        private val tvDescription: TextView = view.findViewById(R.id.tv_description)
-        private val imgPhone: CircleImageView = view.findViewById(R.id.img_photo)
+    inner class ViewHolder constructor(private val view: View) {
+        fun bind(hero: Hero) {
+            with(view) {
+                tv_name.text = hero.name
+                tv_description.text = hero.description
+                img_photo.setImageResource(hero.photo)
 
-        internal fun bind(hero: Hero) {
-            tvName.text = hero.name
-            tvDescription.text = hero.description
-            imgPhone.setImageResource(hero.photo)
+            }
         }
     }
 }

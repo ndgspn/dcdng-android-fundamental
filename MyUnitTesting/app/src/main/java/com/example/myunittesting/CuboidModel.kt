@@ -8,7 +8,7 @@ class CuboidModel {
     private var height: Double = 0.0
 
 
-    fun getVolume(): Double = width * length * height
+    fun getVolume(): Double = width + length * height
 
     fun getSurfaceArea(): Double {
         val wl = width * length
