@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#034B8E"
+    tools:context=".MainActivity">
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/img_github"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_centerInParent="true"
+        android:src="@drawable/github" />
+
+    <TextView
+        android:id="@+id/tv_github"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Github User"
+        android:textSize="36sp"
+        android:textColor="@color/white"
+        android:layout_centerInParent="true"
+        android:fontFamily="@font/robotolight"
+        android:layout_below="@+id/img_github" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="The place where all Github users are connected"
+        android:textSize="14sp"
+        android:textColor="@color/white"
+        android:layout_centerInParent="true"
+        android:fontFamily="@font/robotolight"
+        android:layout_below="@+id/tv_github" />
+</RelativeLayout>
