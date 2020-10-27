@@ -1,24 +1,23 @@
 package com.example.githubuser
 
-import android.content.res.TypedArray
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.service.autofill.UserData
 import android.widget.AdapterView
-import android.widget.ListView
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.githubuser.adapter.UserAdapter
+import com.example.githubuser.model.User
+import com.example.githubuser.model.UsersData
+import com.example.githubuser.model.UsersData.listData
+import kotlinx.android.synthetic.main.activity_home.*
 
 class HomeActivity : AppCompatActivity() {
 
-    private lateinit var adapter: UserAdapter
-    private lateinit var dataName: Array<String>
-    private lateinit var dataUserName: Array<String>
-    private lateinit var dataLocation: Array<String>
-    private lateinit var dataRepository: Array<String>
-    private lateinit var dataCompany: Array<String>
-    private lateinit var dataFollowers: Array<String>
-    private lateinit var dataFollowing: Array<String>
-    private lateinit var dataAvatar: TypedArray
-    private var users = arrayListOf<User>()
+    private var list: ArrayList<User> = arrayListOf()
+    private lateinit var listUserAdapter: UserAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,45 +25,34 @@ class HomeActivity : AppCompatActivity() {
 
         supportActionBar?.hide()
 
-        val listView: ListView = findViewById(R.id.lv_list)
-        adapter = UserAdapter(this)
-        listView.adapter = adapter
-
-        prepare()
-        addItem()
-
-        listView.onItemClickListener = AdapterView.OnItemClickListener{ _, _, position, _ ->
-            Toast.makeText(this@HomeActivity, users[position].name, Toast.LENGTH_SHORT).show()
-        }
-
+        rv_users.setHasFixedSize(true)
+        list.addAll(UsersData.listData)
+        showRecyclerList()
+        setListClickAction()
     }
 
-    private fun prepare() {
-        dataName = resources.getStringArray(R.array.name)
-        dataUserName = resources.getStringArray(R.array.username)
-        dataLocation = resources.getStringArray(R.array.location)
-        dataRepository = resources.getStringArray(R.array.repository)
-        dataCompany = resources.getStringArray(R.array.company)
-        dataFollowers = resources.getStringArray(R.array.followers)
-        dataFollowing = resources.getStringArray(R.array.following)
-        dataAvatar = resources.obtainTypedArray(R.array.avatar)
+    private fun showRecyclerList() {
+        rv_users.layoutManager = LinearLayoutManager(this)
+        listUserAdapter = UserAdapter(list)
+        rv_users.adapter = listUserAdapter
     }
 
-    private fun addItem() {
-        for (position in dataName.indices) {
-            val user = User(
-                dataAvatar.getResourceId(position, -1),
-                dataName[position],
-                dataUserName[position],
-                dataLocation[position],
-                dataRepository[position],
-                dataCompany[position],
-                dataFollowers[position],
-                dataFollowing[position]
-            )
-            users.add(user)
-        }
+    private fun setListClickAction() {
+        listUserAdapter.setOnItemClickCallback(object : UserAdapter.OnItemClickCallback {
+            override fun onItemClicked(data: User) {
+                val detailIntent = Intent(this@HomeActivity, DetailActivity::class.java).apply {
+                    putExtra(DetailActivity.EXTRA_DETAIL_AVATAR, data.avatar)
+                    putExtra(DetailActivity.EXTRA_DETAIL_NAME, data.name)
+                    putExtra(DetailActivity.EXTRA_DETAIL_USERNAME, data.username)
+                    putExtra(DetailActivity.EXTRA_DETAIL_TOTAL_FOLLOWERS, data.followers)
+                    putExtra(DetailActivity.EXTRA_DETAIL_TOTAL_FOLLOWING, data.following)
+                    putExtra(DetailActivity.EXTRA_DETAIL_REPOSITORY, data.repository)
+                    putExtra(DetailActivity.EXTRA_DETAIL_LOCATION, data.location)
+                    putExtra(DetailActivity.EXTRA_DETAIL_COMPANY, data.company)
+                }
 
-        adapter.users = users
+                startActivity(detailIntent)
+            }
+        })
     }
 }
