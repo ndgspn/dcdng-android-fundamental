@@ -240,7 +240,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/robotolight"
                 android:textStyle="bold"
-                android:text="MAKE FRIEND REQUEST"
+                android:text="FOLLOW"
                 android:layout_marginHorizontal="2dp"
                 android:background="@drawable/bg_button" />
 

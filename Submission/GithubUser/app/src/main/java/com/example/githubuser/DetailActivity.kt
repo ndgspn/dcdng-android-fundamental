@@ -2,10 +2,10 @@ package com.example.githubuser
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_detail.*
-import kotlinx.android.synthetic.main.item_user.*
 
 class DetailActivity : AppCompatActivity() {
 
@@ -27,7 +27,7 @@ class DetailActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
         showUserDetail()
-        btn_follow.setOnClickListener { makeFriendRequest() }
+        btn_follow.setOnClickListener { follow() }
     }
 
     private fun showUserDetail() {
@@ -44,7 +44,8 @@ class DetailActivity : AppCompatActivity() {
             .into(img_detail_avatar)
     }
 
-    private fun makeFriendRequest() {
-        Toast.makeText(applicationContext, "Make friend request send!", Toast.LENGTH_SHORT).show()
+    private fun follow() {
+        Toast.makeText(applicationContext, "Your are now a follower from ${intent.getStringExtra(EXTRA_DETAIL_USERNAME)}", Toast.LENGTH_SHORT).show()
     }
+
 }

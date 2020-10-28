@@ -1,10 +1,8 @@
 package com.example.githubuser.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -12,11 +10,9 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.githubuser.R
 import com.example.githubuser.model.User
-import kotlinx.android.synthetic.main.activity_detail.view.*
 import kotlinx.android.synthetic.main.item_user.view.*
-import org.w3c.dom.Text
 
-class UserAdapter(val listUser: ArrayList<User>) : RecyclerView.Adapter<UserAdapter.ListViewHolder>() {
+class UserAdapter(private val listUser: ArrayList<User>) : RecyclerView.Adapter<UserAdapter.ListViewHolder>() {
     private lateinit var onItemClickCallback: OnItemClickCallback
 
     fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
@@ -46,7 +42,7 @@ class UserAdapter(val listUser: ArrayList<User>) : RecyclerView.Adapter<UserAdap
 
         holder.tvName.text = user.name
         holder.tvfollowers.text = user.followers
-        holder.tvfollowing.text = user.following
+        holder.tvfollowing.text = String.format(" %s Following", user.following)
         holder.tvlocation.text = user.location
         holder.itemView.setOnClickListener { onItemClickCallback.onItemClicked(listUser[holder.adapterPosition])}
     }

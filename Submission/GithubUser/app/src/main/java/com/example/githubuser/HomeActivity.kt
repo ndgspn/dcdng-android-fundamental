@@ -3,15 +3,10 @@ package com.example.githubuser
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.service.autofill.UserData
-import android.widget.AdapterView
-import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.githubuser.adapter.UserAdapter
 import com.example.githubuser.model.User
 import com.example.githubuser.model.UsersData
-import com.example.githubuser.model.UsersData.listData
 import kotlinx.android.synthetic.main.activity_home.*
 
 class HomeActivity : AppCompatActivity() {
