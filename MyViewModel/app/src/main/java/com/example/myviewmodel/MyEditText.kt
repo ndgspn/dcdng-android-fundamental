@@ -14,6 +14,7 @@ import androidx.core.content.res.ResourcesCompat
 class MyEditText : AppCompatEditText {
 
     internal lateinit var mClearButtonImage: Drawable
+
     constructor(context: Context) : super(context) {
         init()
     }
@@ -93,7 +94,7 @@ class MyEditText : AppCompatEditText {
             override fun afterTextChanged(s: Editable?) {
             }
         })
-        
+
     }
 
     private fun showClearButton() {
